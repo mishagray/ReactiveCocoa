@@ -20,7 +20,7 @@
   "source": {
     "git": "https://github.com/ReactiveCocoa/ReactiveCocoa.git",
     "branch": "master",
-    "submodules" : true,
+    "submodules" : true
   },
   "dependencies": {
     "Result": [
