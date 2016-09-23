@@ -25,6 +25,9 @@
   "dependencies": {
     "Result": [
       "~> 3.0.0"
+    ],
+    "ReactiveSwift": [
+      "~> 0.0.1"
     ]
   },
   "frameworks": "Foundation",
