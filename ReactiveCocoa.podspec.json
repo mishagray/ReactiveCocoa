@@ -26,9 +26,7 @@
     "Result": [
       "~> 3.0.0"
     ],
-    "ReactiveSwift": [
-      "~> 0.0.1"
-    ]
+    "ReactiveSwift": []
   },
   "frameworks": "Foundation",
   "default_subspecs": "UI",
