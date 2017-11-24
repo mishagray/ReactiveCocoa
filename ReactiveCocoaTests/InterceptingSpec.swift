@@ -135,41 +135,7 @@ fileprivate struct ReturnValueTest<I: Equatable> {
 	}
 
 	func validate(arg: I, offset: UInt) {
-		let expected = argument(forOffset: offset)
-		#if swift(>=3.1)
-			expect(arg) == expected
-		#else
-			switch I.self {
-			case is CChar.Type:
-				expect((arg as! NSNumber).int8Value) == CChar.max - CChar(offset)
-			case is CShort.Type:
-				expect((arg as! NSNumber).int16Value) == CShort.max - CShort(offset)
-			case is CInt.Type:
-				expect((arg as! NSNumber).int32Value) == CInt.max - CInt(offset)
-			case is CLong.Type:
-				expect((arg as! NSNumber).intValue) == CLong.max - CLong(offset)
-			case is CLongLong.Type:
-				expect((arg as! NSNumber).int64Value) == CLongLong.max - CLongLong(offset)
-			case is CUnsignedChar.Type:
-				expect((arg as! NSNumber).uint8Value) == CUnsignedChar.max - CUnsignedChar(offset)
-			case is CUnsignedShort.Type:
-				expect((arg as! NSNumber).uint16Value) == CUnsignedShort.max - CUnsignedShort(offset)
-			case is CUnsignedInt.Type:
-				expect((arg as! NSNumber).uint32Value) == CUnsignedInt.max - CUnsignedInt(offset)
-			case is CUnsignedLong.Type:
-				expect((arg as! NSNumber).uintValue) == CUnsignedLong.max - CUnsignedLong(offset)
-			case is CUnsignedLongLong.Type:
-				expect((arg as! NSNumber).uint64Value) == CUnsignedLongLong.max - CUnsignedLongLong(offset)
-			case is CFloat.Type:
-				expect((arg as! NSNumber).floatValue) == CFloat.greatestFiniteMagnitude - CFloat(offset)
-			case is CDouble.Type:
-				expect((arg as! NSNumber).doubleValue) == CDouble.greatestFiniteMagnitude - CDouble(offset)
-			case is CBool.Type:
-				expect((arg as! NSNumber).boolValue) == (offset % 2 == 0 ? true : false)
-			default:
-				expect((arg)) == expected
-			}
-		#endif
+		expect(arg) == argument(forOffset: offset)
 	}
 
 	func validate(arguments: [Any?], offset: UInt) {
@@ -875,7 +841,7 @@ class InterceptingSpec: QuickSpec {
 
 			}
 
-			it("should send a return value Class") {
+			it("should send a return value AnyClass") {
 
 				let signal = object.reactive.signal(for: #selector(object.testReturnValuesClass(arg:)),
 													includeReturnValue:true)
