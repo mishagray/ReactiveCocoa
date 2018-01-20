@@ -1,6 +1,7 @@
 # master
 1. Adds `includeReturnValue` option to `reactive.signal(for Selector)` (#3557)
 
+# 7.1.0
 # 7.1.0-rc.2
 1. Fix an issue preventing ReactiveCocoa from being built with the Swift 3.2 language mode. (#3556)
 
