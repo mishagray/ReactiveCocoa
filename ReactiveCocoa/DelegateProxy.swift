@@ -22,13 +22,13 @@ open class DelegateProxy<Delegate: NSObjectProtocol>: NSObject {
 		return interceptedSelectors.contains(selector) ? nil : forwardee
 	}
 
-	func intercept(_ selector: Selector) -> Signal<(), NoError> {
+	public func intercept(_ selector: Selector) -> Signal<(), NoError> {
 		interceptedSelectors.insert(selector)
 		originalSetter(self)
 		return self.reactive.trigger(for: selector).take(during: lifetime)
 	}
 
-	func intercept(_ selector: Selector) -> Signal<[Any?], NoError> {
+	public func intercept(_ selector: Selector) -> Signal<[Any?], NoError> {
 		interceptedSelectors.insert(selector)
 		originalSetter(self)
 		return self.reactive.signal(for: selector).take(during: lifetime)
