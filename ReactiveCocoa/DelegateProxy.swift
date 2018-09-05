@@ -50,7 +50,7 @@ extension DelegateProxy {
 	//        through a protocol would result in the following error messages:
 	//        1. PHI node operands are not the same type as the result!
 	//        2. LLVM ERROR: Broken function found, compilation aborted!
-	internal static func proxy<P: DelegateProxy<Delegate>>(
+	public static func proxy<P: DelegateProxy<Delegate>>(
 		for instance: NSObject,
 		setter: Selector,
 		getter: Selector
