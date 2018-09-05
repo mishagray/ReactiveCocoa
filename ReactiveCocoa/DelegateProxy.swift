@@ -2,7 +2,7 @@ import ReactiveSwift
 import enum Result.NoError
 
 open class DelegateProxy<Delegate: NSObjectProtocol>: NSObject {
-	internal weak var forwardee: Delegate? {
+	public weak var forwardee: Delegate? {
 		didSet {
 			originalSetter(self)
 		}
