@@ -34,6 +34,12 @@ open class DelegateProxy<Delegate: NSObjectProtocol>: NSObject {
 		return self.reactive.signal(for: selector).take(during: lifetime)
 	}
 
+	public func intercept(_ selector: Selector, includeReturnValue: Bool) -> Signal<[Any?], NoError> {
+		interceptedSelectors.insert(selector)
+		originalSetter(self)
+		return self.reactive.signal(for: selector, includeReturnValue: includeReturnValue).take(during: lifetime)
+	}
+
 	override open func responds(to selector: Selector!) -> Bool {
 		if interceptedSelectors.contains(selector) {
 			return true
