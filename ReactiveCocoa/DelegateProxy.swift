@@ -1,7 +1,7 @@
 import ReactiveSwift
 import enum Result.NoError
 
-public class DelegateProxy<Delegate: NSObjectProtocol>: NSObject {
+open class DelegateProxy<Delegate: NSObjectProtocol>: NSObject {
 	internal weak var forwardee: Delegate? {
 		didSet {
 			originalSetter(self)
@@ -18,7 +18,7 @@ public class DelegateProxy<Delegate: NSObjectProtocol>: NSObject {
 		self.originalSetter = originalSetter
 	}
 
-	override public func forwardingTarget(for selector: Selector!) -> Any? {
+	override open func forwardingTarget(for selector: Selector!) -> Any? {
 		return interceptedSelectors.contains(selector) ? nil : forwardee
 	}
 
@@ -34,7 +34,7 @@ public class DelegateProxy<Delegate: NSObjectProtocol>: NSObject {
 		return self.reactive.signal(for: selector).take(during: lifetime)
 	}
 
-	override public func responds(to selector: Selector!) -> Bool {
+	override open func responds(to selector: Selector!) -> Bool {
 		if interceptedSelectors.contains(selector) {
 			return true
 		}
